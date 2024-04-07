@@ -10,6 +10,7 @@ const options = {
 	},
 	params: {
 		language: 'en-US',
+		include_adult: false,
 	},
 };
 
@@ -19,7 +20,6 @@ export const fetchTrendsMovie = async () => {
 		...options,
 		params: {
 			...options.params,
-			include_adult: false,
 		},
 	};
 	const response = await axios.get(url, newOptions);
@@ -28,4 +28,33 @@ export const fetchTrendsMovie = async () => {
 
 export const fetchSearchApi = async searchValue => {
 	const url = '/search/movie';
+	const newOptions = {
+		...options,
+		params: {
+			...options.params,
+			query: searchValue,
+		},
+	};
+
+	const response = await axios.get(url, newOptions);
+	return response.data.result;
+};
+
+export const fetchGetId = async id => {
+	const url = `/movie/${id}`;
+
+	const response = await axios.get(url, options);
+	return response.data;
+};
+
+export const fetchCast = async id => {
+	const url = `/movie/${id}/credits `;
+	const response = await axios.get(url, options);
+	return response.data.cast;
+};
+
+export const fetchReviews = async id => {
+	const url = `movie/${id}/reviews`;
+	const response = axios.get(url, options);
+	return response.data.result;
 };
