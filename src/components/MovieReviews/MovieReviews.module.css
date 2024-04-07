@@ -1,0 +1,16 @@
+.container {
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 4px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 250px;
+	align-items: center;
+}
+
+.btn {
+	width: 100px;
+	height: 30px;
+}
