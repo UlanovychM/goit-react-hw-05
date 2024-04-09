@@ -1,24 +1,52 @@
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { fetchReviews } from '../../services/filmApi';
 
 import css from './Contact.module.css';
 
-const Contact = ({ data: { id, name, number }, onDelete }) => {
+const MovieReviews = () => {
+	const { movieId } = useParams();
+	const [reviews, setReviews] = useState([]);
+	const [loader, setLoader] = useState(false);
+	const [error, setError] = useEffect(false);
+
+	useEffect(() => {
+		if (!movieId) return;
+		const getData = async () => {
+			try {
+				setLoader(true);
+				const data = await fetchReviews(movieId);
+				setReviews(data);
+			} catch (e) {
+				setError(false);
+			} finally {
+				setLoader(false);
+			}
+		};
+
+		return getData;
+	}, [movieId]);
+
 	return (
 		<>
-			<div className={css.container}>
-				<p className={css.name}>{name}</p>
-				<p className={css.number}>{number}</p>
-				<button className={css.btn} onClick={() => onDelete(id)}>
-					Delete
-				</button>
-			</div>
+			{loader && <Loader />}
+			{reviews && (
+				<ul>
+					{reviews.map(({ id, author, content }) => {
+						<li key={id}>
+							<p>
+								Author: <span>{author}</span>
+							</p>
+							<p>{content}</p>
+						</li>;
+					})}
+				</ul>
+			)}
+			{error && <ErrorMessage />}
+			{!loader && !reviews.length && 'No Reviews'}
 		</>
 	);
 };
 
-export default Contact;
-
-Contact.propTypes = {
-	data: PropTypes.object,
-	onDelete: PropTypes.func,
-};
+export default MovieReviews;
