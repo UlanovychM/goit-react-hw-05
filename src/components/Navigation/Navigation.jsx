@@ -1,24 +1,30 @@
-import PropTypes from 'prop-types';
-
+import { NavLink } from 'react-router-dom';
 import css from './Contact.module.css';
+import clsx from 'clsx';
 
-const Contact = ({ data: { id, name, number }, onDelete }) => {
+const Navigation = ({ data: { id, name, number }, onDelete }) => {
 	return (
-		<>
-			<div className={css.container}>
-				<p className={css.name}>{name}</p>
-				<p className={css.number}>{number}</p>
-				<button className={css.btn} onClick={() => onDelete(id)}>
-					Delete
-				</button>
-			</div>
-		</>
+		<header>
+			<nav>
+				<NavLink
+					className={({ isActivate }) => {
+						return clsx(css.link, isActivate && css.isActivate);
+					}}
+					to='/'
+				>
+					Home
+				</NavLink>
+				<NavLink
+					className={({ isActivate }) => {
+						return clsx(css.link, isActivate && css.isActivate);
+					}}
+					to='/movies'
+				>
+					Movies
+				</NavLink>
+			</nav>
+		</header>
 	);
 };
 
-export default Contact;
-
-Contact.propTypes = {
-	data: PropTypes.object,
-	onDelete: PropTypes.func,
-};
+export default Navigation;

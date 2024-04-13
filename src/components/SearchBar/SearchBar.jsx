@@ -1,24 +1,34 @@
 import PropTypes from 'prop-types';
 
-import css from './Contact.module.css';
+import css from './SearchBar.module.css';
 
-const Contact = ({ data: { id, name, number }, onDelete }) => {
+const SearchBar = ({ onSubmit }) => {
+	const handleSubmit = e => {
+		e.preventDefault();
+		const form = e.target;
+		const search = form.elements.search.value;
+		if (search.trim() === '') {
+			toast.error('Pleas enter search text');
+		}
+		onSubmit(search);
+		form.reset();
+	};
+
 	return (
-		<>
-			<div className={css.container}>
-				<p className={css.name}>{name}</p>
-				<p className={css.number}>{number}</p>
-				<button className={css.btn} onClick={() => onDelete(id)}>
-					Delete
-				</button>
-			</div>
-		</>
+		<form className={css.form} onSubmit={handleSubmit}>
+			<input
+				className={css.input}
+				type='text'
+				name='search'
+				placeholder='Search movies'
+			/>
+			<button className={css.btn} type='submit'></button>
+		</form>
 	);
 };
 
-export default Contact;
+export default SearchBar;
 
 Contact.propTypes = {
-	data: PropTypes.object,
-	onDelete: PropTypes.func,
+	onSubmit: PropTypes.func,
 };

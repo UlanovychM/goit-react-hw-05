@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import clsx from 'clsx';
 import css from './ContactList.module.css';
 import Contact from '../components/Contact/Contact';
 
-const ContactList = ({ contacts, onDelete }) => {
+const MovieDetailsPage = ({ contacts, onDelete }) => {
 	return (
 		<>
 			<ul className={css.list}>
@@ -17,9 +17,9 @@ const ContactList = ({ contacts, onDelete }) => {
 	);
 };
 
-export default ContactList;
+export default MovieDetailsPage;
 
-ContactList.propTypes = {
+MovieDetailsPage.propTypes = {
 	contacts: PropTypes.array,
 	onDelete: PropTypes.func,
 };
