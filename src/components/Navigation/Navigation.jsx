@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import css from './Contact.module.css';
-import clsx from 'clsx';
 
-const Navigation = ({ data: { id, name, number }, onDelete }) => {
+import clsx from 'clsx';
+import css from './Navigation.module.css';
+
+const Navigation = () => {
 	return (
 		<header>
 			<nav>

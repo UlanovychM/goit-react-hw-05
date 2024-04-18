@@ -3,8 +3,6 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { fetchReviews } from '../../services/filmApi';
 
-import css from './Contact.module.css';
-
 const MovieReviews = () => {
 	const { movieId } = useParams();
 	const [reviews, setReviews] = useState([]);

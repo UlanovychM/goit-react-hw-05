@@ -1,16 +1,35 @@
-.container {
-	border: 1px solid black;
-	border-radius: 4px;
-	padding: 4px;
-
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	width: 250px;
-	align-items: center;
+.header {
+	position: sticky;
+	right: 0;
+	top: 0;
+	z-index: 1;
+	box-shadow: var(--main-box-shadow);
+	background-color: white;
 }
 
-.btn {
-	width: 100px;
-	height: 30px;
+.nav {
+	display: flex;
+	gap: 32px;
+	padding: 16px 64px;
+}
+
+.link {
+	text-decoration: none;
+	font-size: 24px;
+	color: var(--secondary-color);
+}
+
+.link:last-child {
+	margin-left: 20px;
+}
+
+.link:hover,
+.link:focus {
+	color: var(--main-color);
+	text-decoration: underline;
+}
+
+.isActive {
+	color: var(--main-color);
+	text-decoration: none;
 }

@@ -1,24 +1,15 @@
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import css from './NotFound.module.css';
 
-import css from './Contact.module.css';
-
-const Contact = ({ data: { id, name, number }, onDelete }) => {
+const NotFound = () => {
 	return (
-		<>
-			<div className={css.container}>
-				<p className={css.name}>{name}</p>
-				<p className={css.number}>{number}</p>
-				<button className={css.btn} onClick={() => onDelete(id)}>
-					Delete
-				</button>
-			</div>
-		</>
+		<div>
+			<p>Oops! Not Found!</p>
+			<Link to='/'>
+				<p>Back to Home Page</p>
+			</Link>
+		</div>
 	);
 };
 
-export default Contact;
-
-Contact.propTypes = {
-	data: PropTypes.object,
-	onDelete: PropTypes.func,
-};
+export default NotFound;

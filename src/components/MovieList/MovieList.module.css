@@ -1,0 +1,22 @@
+.list {
+	margin: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.link {
+	font-size: 20px;
+	color: black;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.link:visited {
+	color: var(--main-color);
+}
+
+.item:hover,
+item:focus {
+	color: var(--main-color);
+	text-decoration: underline;
+}

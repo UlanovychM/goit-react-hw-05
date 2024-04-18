@@ -1,36 +1,38 @@
-import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import { Toaster } from 'react-hot-toast';
 
-import HomePage from 'path/to/pages/HomePage';
-import NotFound from 'path/to/pages/NotFoundPage';
-import MoviesPage from 'path/to/pages/MoviesPage';
+import MovieCast from '../MovieCast/MovieCast';
+import MovieReviews from '../MovieReviews/MovieReviews';
+import Navigation from '../Navigation/Navigation';
+import Loader from '../Loader/Loader';
+
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() =>
+	import('../../pages/MovieDetailsPage/MovieDetailsPage')
+);
+const NotFound = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
 
 import css from './App.module.css';
-const buildLinkClass = ({ isActive }) => {
-	return clsx(css.link, isActive && css.active);
-};
 
 function App() {
-	const [movie, setMovie] = useState([]);
-
 	return (
-		<>
-			<div className={css.container}>
-				<nav className={css.nav}>
-					<NavLink to='/' className={buildLinkClass}>
-						Home
-					</NavLink>
-					<NavLink to='/products' className={buildLinkClass}>
-						Movie
-					</NavLink>
-				</nav>
+		<div className={css.container}>
+			<Navigation className={css.nav} />
+			<Suspense fallback={<Loader />}>
 				<Routes>
 					<Route path='/' element={<HomePage />} />
-					<Route path='/about' element={<MoviesPage />} />
+					<Route path='/movies' element={<MoviesPage />} />
+					<Route path='/movies/:movieId' element={<MovieDetailsPage />}>
+						<Route path='reviews' element={<MovieReviews />} />
+						<Route path='cast' element={<MovieCast />} />
+					</Route>
 					<Route path='*' element={<NotFound />} />
 				</Routes>
-			</div>
-		</>
+			</Suspense>
+			<Toaster />
+		</div>
 	);
 }
 

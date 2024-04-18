@@ -27,7 +27,7 @@ const HomePage = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className={css.container}>
 			<h1>Trends today</h1>
 			{loader && <Loader />}
 			<MovieList movies={movies} />
