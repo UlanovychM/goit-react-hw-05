@@ -7,7 +7,7 @@ const MovieReviews = () => {
 	const { movieId } = useParams();
 	const [reviews, setReviews] = useState([]);
 	const [loader, setLoader] = useState(false);
-	const [error, setError] = useEffect(false);
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		if (!movieId) return;

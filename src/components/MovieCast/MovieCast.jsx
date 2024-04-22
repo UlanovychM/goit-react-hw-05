@@ -9,10 +9,10 @@ const MovieCast = () => {
 	const [casts, setCasts] = useState([]);
 	const { movieId } = useParams();
 	const [loader, setLoader] = useState(false);
-	const [error, setError] = useEffect(false);
+	const [error, setError] = useState(false);
 
 	const defaultImg =
-		'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftinypng.com%2F&psig=AOvVaw0k5rakUhG8AltV60G9ih5F&ust=1712604686907000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCODq_-frsIUDFQAAAAAdAAAAABAJ';
+		'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg';
 
 	useEffect(() => {
 		if (!movieId) return;

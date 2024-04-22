@@ -22,5 +22,5 @@ const MovieList = ({ movies }) => {
 export default MovieList;
 
 MovieList.propTypes = {
-	movie: PropTypes.array,
+	movies: PropTypes.array,
 };

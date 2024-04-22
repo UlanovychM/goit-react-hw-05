@@ -8,18 +8,13 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 
 const MoviesPage = () => {
 	const [movies, setMovies] = useState([]);
-	const [value, setValue] = useState('');
 	const [params, setParams] = useSearchParams();
 	const [loader, setLoader] = useState(false);
 	const [error, setError] = useState(false);
 
-	const searchValue = params.get('query' ?? '');
+	const searchValue = params.get('query') ?? '';
 
 	useEffect(() => {
-		if (value.trim() === '' && searchValue === '') {
-			return;
-		}
-
 		const getData = async () => {
 			try {
 				setLoader(true);
@@ -32,7 +27,7 @@ const MoviesPage = () => {
 			}
 		};
 		getData();
-	}, [value, searchValue]);
+	}, []);
 
 	const handleSubmit = value => {
 		setValue(value);
