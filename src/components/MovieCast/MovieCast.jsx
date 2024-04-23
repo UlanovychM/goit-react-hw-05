@@ -60,6 +60,7 @@ const MovieCast = () => {
 					))}
 				</ul>
 			)}
+			{!loader && !casts.length && 'No Casts'}
 			{error && <ErrorMessage />}
 		</div>
 	);
