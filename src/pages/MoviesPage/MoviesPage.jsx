@@ -9,6 +9,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 const MoviesPage = () => {
 	const [movies, setMovies] = useState([]);
 	const [params, setParams] = useSearchParams();
+	const [value, setValue] = useState('');
 	const [loader, setLoader] = useState(false);
 	const [error, setError] = useState(false);
 
@@ -27,7 +28,7 @@ const MoviesPage = () => {
 			}
 		};
 		getData();
-	}, []);
+	}, [value]);
 
 	const handleSubmit = value => {
 		setValue(value);

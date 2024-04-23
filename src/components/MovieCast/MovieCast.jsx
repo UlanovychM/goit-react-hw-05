@@ -35,9 +35,9 @@ const MovieCast = () => {
 	return (
 		<div>
 			{loader && <Loader />}
-			{cast && (
+			{casts && (
 				<ul>
-					{casts.map(({ id, character, name, profile_path }) => {
+					{casts.map(({ id, character, name, profile_path }) => (
 						<li key={id}>
 							<div>
 								<img
@@ -56,8 +56,8 @@ const MovieCast = () => {
 									Character: <span>{character}</span>
 								</p>
 							</div>
-						</li>;
-					})}
+						</li>
+					))}
 				</ul>
 			)}
 			{error && <ErrorMessage />}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { fetchReviews } from '../../services/filmApi';
+import { useParams } from 'react-router-dom';
 
 const MovieReviews = () => {
 	const { movieId } = useParams();
@@ -31,14 +32,14 @@ const MovieReviews = () => {
 			{loader && <Loader />}
 			{reviews && (
 				<ul>
-					{reviews.map(({ id, author, content }) => {
+					{reviews.map(({ id, author, content }) => (
 						<li key={id}>
 							<p>
 								Author: <span>{author}</span>
 							</p>
 							<p>{content}</p>
-						</li>;
-					})}
+						</li>
+					))}
 				</ul>
 			)}
 			{error && <ErrorMessage />}
