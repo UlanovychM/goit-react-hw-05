@@ -18,7 +18,7 @@ const MovieReviews = () => {
 				const data = await fetchReviews(movieId);
 				setReviews(data);
 			} catch (e) {
-				setError(false);
+				setError(true);
 			} finally {
 				setLoader(false);
 			}
